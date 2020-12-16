@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;// text kulllanmak için önemli eklenmesi gerek
+
+public class sepet : MonoBehaviour
+{
+    public   int skor;
+    public float hiz;
+    TMPro.TextMeshProUGUI skor_txt;  // text türündeen bbir değişken
+
+   private void Start()
+    {
+       skor_txt = GameObject.Find("Canvas/skor_txt").GetComponent<TextMeshProUGUI>();// buradda ekran kısmına text yazdırıyorruz
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "elma")
+        {
+            skor = skor + 10;
+
+            Debug.Log(skor.ToString());
+         
+            Destroy(collision.gameObject);
+            skor_txt.text = skor.ToString();// skor kısmını texte yazdırıyoruz
+
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(hiz * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {   
+            transform.Translate(-hiz * Time.deltaTime, 0, 0);
+        }
+
+    }
+}
+    
