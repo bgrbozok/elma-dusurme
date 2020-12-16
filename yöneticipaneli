@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine; // bu butonlları kulllanabilmen için gereken kütüphane  
+using UnityEngine.SceneManagement;// bu sahneler içinn kullanman gereken kütüphane
+
+public class yonetici : MonoBehaviour
+{
+    public GameObject elma;
+    bool oyun_durduruldu=false; // burdda bool olmasının sebei true veya false olduğunu anlamak için
+    // Start is called before the first frame update
+    void Start()
+    {
+        InvokeRepeating("elma_ekle", 0.0f, 0.5f);
+        Time.timeScale = 1.0f;
+    }
+
+
+    public void durdur_btn()// public fonksiyoon atadık
+    {
+        oyun_durduruldu = !oyun_durduruldu;// bu fonksiyon çalıştığında değişkeni tersine çevirecek
+
+        if(oyun_durduruldu== true)// eğer değişken false den true olurrsa oyuun durdurrulacak
+        {
+            Time.timeScale = 0.0f;
+        }
+        else// eğer değişken true dan false olursa oyun çalışacak
+        {
+            Time.timeScale = 1.0f;  
+        }
+    }
+    public void tekrar_oyna()
+    {
+        SceneManager.LoadScene("Scenes/SampleScene"); // ilk sahneyye dönme işini yapıyor
+    }
+
+    void elma_ekle()
+    {
+
+        float rast = Random.Range(-5f, 10f); // burda random sayilar uretiyor 
+        GameObject yeni_elma = Instantiate(elma, new Vector3(rast, 8, -12  ), Quaternion.identity); // yine burada carpisma kontrol ediliyor
+
+        void Update()
+        {
+
+        }
+    }
+}   
