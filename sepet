@@ -11,11 +11,12 @@ public class sepet : MonoBehaviour
 
    private void Start()
     {
-       skor_txt = GameObject.Find("Canvas/skor_txt").GetComponent<TextMeshProUGUI>();// buradda ekran kısmına text yazdırıyorruz
+      
+        skor_txt = GameObject.Find("Canvas/skor_txt").GetComponent<TextMeshProUGUI>();// buradda ekran kısmına text yazdırıyorruz
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "elma")
+        if (collision.gameObject.tag == "elma1")
         {
             skor = skor + 10;
 
@@ -38,7 +39,10 @@ public class sepet : MonoBehaviour
         {   
             transform.Translate(-hiz * Time.deltaTime, 0, 0);
         }
-
+        if (transform.position.x > 13)
+            transform.position = new Vector3(13, transform.position.y, transform.position.z); // burada sınır bekliyoruz x 10 dan fazla ise yeni pozisyonu 13 gibi
+        if (transform.position.x < -1)
+            transform.position = new Vector3(-1, transform.position.y, transform.position.z);
     }
 }
     
